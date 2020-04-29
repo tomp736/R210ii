@@ -14,7 +14,7 @@ setFanSpeed()
         fi
     fi
 
-    if ! [[ $isValid ]]; then
+    if [ $isValid = false ]; then
         echo "$intSpeed is not a valid fanspeed. Valid range is 20% - 99% because my ears."; exit 1;
     fi
 
