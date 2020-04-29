@@ -2,7 +2,7 @@
 
 setFanSpeed()
 {
-    local intSpeed=85
+    local intSpeed=$1
     local hexSpeed=$(printf '%x\n' $hexSpeed)
 
     #require ipmi tools for manual fanspeed management
@@ -16,7 +16,7 @@ setFanSpeed()
     # sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed
 }
 
-setFanSpeed
+setFanSpeed 85
 
 #  % = HEX
 # 10 = A
