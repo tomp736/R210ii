@@ -7,13 +7,13 @@ setFanSpeed()
 
     local intSpeed=$1
     local isValid=false
-    if [[ "$intSpeed" =~ ^[0-9]+$ ]] then
-        if [[ $intSpeed -ge 20 &&  $intSpeed -le 100 ]] then
+    if [[ "$intSpeed" =~ ^[0-9]+$ ]]; then
+        if [[ $intSpeed -ge 20 &&  $intSpeed -le 100 ]]; then
             isValid=true
         fi
     fi
 
-    if ! [[ $isValid ]] then
+    if ! [[ $isValid ]]; then
         echo "$intSpeed is not a valid fanspeed. Valid range is 20% - 99% because my ears."; exit 1;
     fi
 
