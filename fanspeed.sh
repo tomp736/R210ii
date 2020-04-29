@@ -9,6 +9,7 @@ setFanSpeed()
     local isValid=false
     if [[ "$intSpeed" =~ ^[0-9]+$ ]]; then
         if [[ $intSpeed -ge 20 && $intSpeed -le 100 ]]; then
+            echo "$intSpeed is valid!"
             isValid=true
         fi
     fi
