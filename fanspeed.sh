@@ -26,7 +26,7 @@ setFanSpeed()
     sudo ipmitool raw 0x30 0x30 0x01 0x00
 
     #set fanspeed
-    echo "Setting fans to $intSpeed %"
+    echo "Setting fans to $intSpeed % : $hexSpeed"
     sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed
 }
 
