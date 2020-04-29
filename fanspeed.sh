@@ -41,6 +41,6 @@ setFanSpeed()
     sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed
 }
 command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
-command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not installed.  Aborting."; exit 1; }
+command -v sensors >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not installed.  Aborting."; exit 1; }
 
 setFanSpeed $1
