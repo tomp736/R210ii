@@ -32,7 +32,6 @@ setFanSpeed()
     local hexSpeed=$(printf '%x\n' $intSpeed)
 
     #require ipmi tools for manual fanspeed management
-    command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
 
     #enable manual fan speed control
     sudo ipmitool raw 0x30 0x30 0x01 0x00
@@ -41,5 +40,7 @@ setFanSpeed()
     echo "Setting fans to $intSpeed % : hex: $hexSpeed"
     sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed
 }
+command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
+command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not installed.  Aborting."; exit 1; }
 
 setFanSpeed $1
