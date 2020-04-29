@@ -55,7 +55,7 @@ addChronJob()
     #write out current crontab
     crontab -l > mycron
     #echo new cron into cron file
-    echo "* * * * * fanspeed" >> mycron
+    echo "* * * * * fanspeed 32" >> mycron
     #install new cron file
     crontab mycron
     rm mycron
