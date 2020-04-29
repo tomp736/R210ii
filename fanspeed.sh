@@ -30,8 +30,8 @@ setFanSpeed()
         echo "$intSpeed is not a valid fanspeed. Valid range is 20% - 99% because my ears."; exit 1;
     fi
 
-    if [ $curCoreTemp -gt $maxCoreTemp ]l then
-        intSpeed=$"(expr $intSpeed + ( $curCoreTemp - $maxCoreTemp ) )";
+    if [ $curCoreTemp -gt $maxCoreTemp ]; then
+        intSpeed=$"(expr $intSpeed + ( $curCoreTemp - $maxCoreTemp ) )"
         echo "Throttling to $intSpeed %"
     fi
 
