@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/bash
 
 local intSpeed = 85
 local hexSpeed = $(printf '%x\n' $hexSpeed)
