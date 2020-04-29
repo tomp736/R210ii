@@ -49,7 +49,7 @@ setFanSpeed()
 
 addChronJob()
 {
-    sudo cp src/fanspeed /usr/local/bin/fanspeed
+    sudo cp fanspeed /usr/local/bin/fanspeed
     sudo chmod +x /usr/local/bin/fanspeed
 
     #write out current crontab
