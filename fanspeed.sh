@@ -13,6 +13,18 @@ setFanSpeed()
         fi
     fi
 
+    # 
+
+    local maxCoreTemp=0
+    while read -r value
+    do
+        if [ $value > $maxCoreTemp ]; then 
+            maxCoreTemp = $value
+        fi        
+    done < $(sensors | grep "Core" | cut -f 10 -d ' ' | cut -f 2 -d '+' | cut -f 1 -d '.')
+
+    echo $maxCoreTemp
+
     if [ $isValid = false ]; then
         echo "$intSpeed is not a valid fanspeed. Valid range is 20% - 99% because my ears."; exit 1;
     fi
