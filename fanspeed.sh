@@ -31,7 +31,7 @@ setFanSpeed()
     fi
 
     if [ $curCoreTemp -gt $maxCoreTemp ]
-        intSpeed=$intSpeed+($curCoreTemp-$maxCoreTemp);
+        intSpeed=$"(expr $intSpeed + ( $curCoreTemp - $maxCoreTemp ) )";
         echo "Throttling to $intSpeed %"
     fi
 
