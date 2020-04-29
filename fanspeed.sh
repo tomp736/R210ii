@@ -19,7 +19,7 @@ setFanSpeed()
     while read -r value
     do
         echo $value
-        if [ $value > $maxCoreTemp ]; then 
+        if [ $value -ge $maxCoreTemp ]; then 
             maxCoreTemp = $value
         fi        
     done < sensors | grep "Core" | cut -f 10 -d ' ' | cut -f 2 -d '+' | cut -f 1 -d '.'
