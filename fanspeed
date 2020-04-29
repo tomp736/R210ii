@@ -9,7 +9,7 @@ setFanSpeed()
     local curCoreTemp=0
     while read -r value
     do
-        if [ $value -ge $maxCoreTemp ]; then 
+        if [ $value -ge $curCoreTemp ]; then 
             curCoreTemp=$value
         fi        
     done <<< "$(sensors | grep "Core" | cut -f 10 -d ' ' | cut -f 2 -d '+' | cut -f 1 -d '.')"
