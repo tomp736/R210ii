@@ -9,7 +9,6 @@ setFanSpeed()
     local isValid=false
     if [[ "$intSpeed" =~ ^[0-9]+$ ]]; then
         if [[ $intSpeed -ge 20 && $intSpeed -le 100 ]]; then
-            echo "$intSpeed is valid!"
             isValid=true
         fi
     fi
@@ -27,7 +26,7 @@ setFanSpeed()
     sudo ipmitool raw 0x30 0x30 0x01 0x00
 
     #set fanspeed
-    echo "Setting fans to $intSpeed % : $hexSpeed"
+    echo "Setting fans to $intSpeed % : hex: $hexSpeed"
     sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed
 }
 
