@@ -16,7 +16,7 @@ setFanSpeed()
     # sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed
 }
 
-setFanSpeed()
+setFanSpeed
 
 #  % = HEX
 # 10 = A
