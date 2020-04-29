@@ -18,6 +18,7 @@ setFanSpeed()
     local maxCoreTemp=0
     while read -r value
     do
+        echo $value
         if [ $value > $maxCoreTemp ]; then 
             maxCoreTemp = $value
         fi        
