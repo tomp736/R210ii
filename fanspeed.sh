@@ -15,7 +15,7 @@ setFanSpeed()
     done <<< "$(sensors | grep "Core" | cut -f 10 -d ' ' | cut -f 2 -d '+' | cut -f 1 -d '.')"
 
     echo "Max core temp is $maxCoreTemp "
-    echo "Cur core temp is $maxCoreTemp "
+    echo "Cur core temp is $curCoreTemp "
 
     local intSpeed=$1
     local isValid=false
