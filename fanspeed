@@ -31,7 +31,7 @@ setFanSpeed()
 
     if [ $curCoreTemp -gt $maxCoreTemp ]; then
         local addSpeed=$(($curCoreTemp - $maxCoreTemp))
-        intSpeed=$(($intSpeed + $addSpeed + 20))
+        intSpeed=$(($intSpeed + $addSpeed * 5))
     fi
 
     local hexSpeed=$(printf '%x\n' $intSpeed)
@@ -77,4 +77,4 @@ command -v sensors >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not
  ipmitool raw 0x30 0x30 0x01 0x00 &>/dev/null
 
 echo "Press [CTRL+C] to stop.."
-while :; do setFanSpeed $1; sleep 1; done
+while :; do setFanSpeed $1; sleep 5; done
