@@ -7,7 +7,7 @@ install()
     type=$1
     minSpeed=$2
     maxTemp=$3
-    pollInterval=$3
+    pollInterval=$4
     if [ "$type" == "cron" ]; then
         addChronJob $minSpeed $maxTemp $pollInterval
     fi
