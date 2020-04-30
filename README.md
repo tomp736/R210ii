@@ -8,4 +8,4 @@ Dell R210 ii tools
 
 ```./install cron 32 60 5```
 
-```.fanspeed 32 60 5```
+```./fanspeed 32 60 5```
