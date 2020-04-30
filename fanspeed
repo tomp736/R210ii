@@ -41,15 +41,15 @@ setFanSpeed()
     if ! [ $intSpeed -eq $curFanSpeed ]; then
         #set fanspeed
         echo "MaxCore:$maxCoreTemp,CurCore:$curCoreTemp,Speed:$intSpeed,Hex:0x$hexSpeed"
-        sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed &>/dev/null 
+         ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed &>/dev/null 
         curFanSpeed=$intSpeed 
     fi
 }
 
 install()
 {
-    sudo cp fanspeed /usr/local/bin/fanspeed
-    sudo chmod +x /usr/local/bin/fanspeed
+     cp fanspeed /usr/local/bin/fanspeed
+     chmod +x /usr/local/bin/fanspeed
 }
 
 addChronJob()
@@ -65,16 +65,16 @@ addChronJob()
 
 addSystemd()
 {
-    sudo cp fanspeed.service /etc/systemd/system/fanspeed.service
-    sudo systemctl start fanspeed.service 
-    sudo systemctl enable fanspeed.service
+     cp fanspeed.service /etc/systemd/system/fanspeed.service
+     systemctl start fanspeed.service 
+     systemctl enable fanspeed.service
 }
 
 command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
 command -v sensors >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not installed.  Aborting."; exit 1; }
 
 #enable manual fan speed control
-sudo ipmitool raw 0x30 0x30 0x01 0x00 &>/dev/null
+ ipmitool raw 0x30 0x30 0x01 0x00 &>/dev/null
 
 echo "Press [CTRL+C] to stop.."
 while :; do setFanSpeed $1; sleep 1; done
