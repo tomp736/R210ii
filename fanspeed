@@ -7,7 +7,7 @@ setFanSpeed()
     local minSpeed=0
     local maxSpeed=100
 
-    local maxCoreTemp=50
+    local maxCoreTemp=60
     local curCoreTemp=0
     while read -r value
     do
@@ -31,7 +31,7 @@ setFanSpeed()
 
     if [ $curCoreTemp -gt $maxCoreTemp ]; then
         local addSpeed=$(($curCoreTemp - $maxCoreTemp))
-        intSpeed=$(($intSpeed + $addSpeed + 10))
+        intSpeed=$(($intSpeed + $addSpeed + 20))
     fi
 
     local hexSpeed=$(printf '%x\n' $intSpeed)
