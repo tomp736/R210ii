@@ -2,7 +2,7 @@
 Description=Fanspeed Daemon
 
 [Service]
-ExecStart=/usr/local/bin/fanspeed 32 60
+ExecStart=/usr/local/bin/fanspeed 32 60 5
 Restart=on-failure
 User=root
 

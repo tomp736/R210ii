@@ -1,0 +1,42 @@
+#!/bin/bash
+
+install()
+{
+    cp fanspeed /usr/local/bin/fanspeed
+    chmod +x /usr/local/bin/fanspeed
+    type=$1
+    minSpeed=$2
+    maxTemp=$3
+    pollInterval=$3
+    if [ "$type" == "cron" ]; then
+        addChronJob $minSpeed $maxTemp $pollInterval
+    fi
+
+    if [ "$type" == "systemd" ]; then
+        addSystemd $minSpeed $maxTemp $pollInterval
+    fi
+}
+
+addChronJob()
+{
+    #write out current crontab
+    crontab -l > mycron
+    #echo new cron into cron file
+    echo "* * * * * bash /usr/local/bin/fanspeed $1 $2 $3" >> mycron
+    #install new cron file
+    crontab mycron
+    rm mycron
+}
+
+addSystemd()
+{
+    systemctl stop fanspeed.service &>/dev/null
+    cp fanspeed.service /etc/systemd/system/fanspeed.service
+    systemctl enable fanspeed.service
+    systemctl daemon-reload
+    systemctl start fanspeed.service
+}
+
+# install systemd 32 60 5
+# instll cron 32 60 5
+install $1 $2 $3 $4

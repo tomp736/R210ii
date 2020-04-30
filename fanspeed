@@ -47,30 +47,6 @@ setFanSpeed()
     fi
 }
 
-install()
-{
-    cp fanspeed /usr/local/bin/fanspeed
-    chmod +x /usr/local/bin/fanspeed
-}
-
-addChronJob()
-{
-    #write out current crontab
-    crontab -l > mycron
-    #echo new cron into cron file
-    echo "* * * * * bash /usr/local/bin/fanspeed 32 60" >> mycron
-    #install new cron file
-    crontab mycron
-    rm mycron
-}
-
-addSystemd()
-{
-    cp fanspeed.service /etc/systemd/system/fanspeed.service
-    systemctl start fanspeed.service 
-    systemctl enable fanspeed.service
-}
-
 command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
 command -v sensors >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not installed.  Aborting."; exit 1; }
 
@@ -78,4 +54,4 @@ command -v sensors >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not
 ipmitool raw 0x30 0x30 0x01 0x00 &>/dev/null
 
 echo "Press [CTRL+C] to stop.."
-while :; do setFanSpeed $1 $2; sleep 5; done
+while :; do setFanSpeed $1 $2; sleep $3; done
