@@ -1,7 +1,6 @@
 #!/bin/bash
 
 curSpeed=0
-curCoreTemp=0
 minSpeed=32
 maxSpeed=100
 
@@ -11,7 +10,7 @@ setFanSpeed()
     local intSpeed=$1
     local maxCoreTemp=$2
 
-    curCoreTemp=0
+    local curCoreTemp=0
     while read -r value
     do
         if [ $value -ge $curCoreTemp ]; then 
