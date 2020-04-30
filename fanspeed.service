@@ -1,0 +1,9 @@
+[Unit]
+Description=Fanspeed Daemon
+
+[Service]
+ExecStart=/usr/local/bin/fanspeed 32
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target 

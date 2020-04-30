@@ -46,11 +46,14 @@ setFanSpeed()
     fi
 }
 
-addChronJob()
+install()
 {
     sudo cp fanspeed /usr/local/bin/fanspeed
     sudo chmod +x /usr/local/bin/fanspeed
+}
 
+addChronJob()
+{
     #write out current crontab
     crontab -l > mycron
     #echo new cron into cron file
@@ -58,6 +61,13 @@ addChronJob()
     #install new cron file
     crontab mycron
     rm mycron
+}
+
+addSystemd()
+{
+    sudo cp /etc/systemd/system/fanspeed.service
+    sudo systemctl start fanspeed.service 
+    sudo systemctl enable fanspeed.service
 }
 
 command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
