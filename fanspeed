@@ -32,7 +32,6 @@ setFanSpeed()
     if [ $curCoreTemp -gt $maxCoreTemp ]; then
         local addSpeed=$(($curCoreTemp - $maxCoreTemp))
         intSpeed=$(($intSpeed + $addSpeed + 10))
-        echo "Throttling to $intSpeed %"
     fi
 
     local hexSpeed=$(printf '%x\n' $intSpeed)
@@ -40,9 +39,6 @@ setFanSpeed()
     #require ipmi tools for manual fanspeed management
 
     if ! [ $intSpeed -eq $curFanSpeed ]; then
-        #enable manual fan speed control
-        sudo ipmitool raw 0x30 0x30 0x01 0x00
-
         #set fanspeed
         echo "MaxCore:$maxCoreTemp,CurCore:$curCoreTemp,Speed:$intSpeed,Hex:0x$hexSpeed"
         sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed &>/dev/null 
@@ -66,6 +62,9 @@ addChronJob()
 
 command -v ipmitool >/dev/null 2>&1 || { echo >&2 "I require imptool but it's not installed.  Aborting."; exit 1; }
 command -v sensors >/dev/null 2>&1 || { echo >&2 "I require sensors but it's not installed.  Aborting."; exit 1; }
+
+#enable manual fan speed control
+sudo ipmitool raw 0x30 0x30 0x01 0x00 &>/dev/null
 
 echo "Press [CTRL+C] to stop.."
 while :; do setFanSpeed $1; sleep 1; done
