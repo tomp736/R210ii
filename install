@@ -35,7 +35,7 @@ addSystemd()
 
     execCmd=""
 
-    /bin/sed -i "s:ExecStart:ExecStart=/usr/local/bin/fanspeed $1 $2 $3:g" /etc/systemd/system/fanspeed.service
+    /bin/sed -i "s:ExecStart.*:ExecStart=/usr/local/bin/fanspeed $1 $2 $3:g" /etc/systemd/system/fanspeed.service
     systemctl enable fanspeed.service
     systemctl daemon-reload
     systemctl start fanspeed.service
