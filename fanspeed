@@ -16,9 +16,6 @@ setFanSpeed()
         fi        
     done <<< "$(sensors | grep "Core" | cut -f 10 -d ' ' | cut -f 2 -d '+' | cut -f 1 -d '.')"
 
-    echo "Max core temp is $maxCoreTemp "
-    echo "Cur core temp is $curCoreTemp "
-
     local intSpeed=$1
     local isValid=false
     if [[ "$intSpeed" =~ ^[0-9]+$ ]]; then
@@ -47,7 +44,7 @@ setFanSpeed()
         sudo ipmitool raw 0x30 0x30 0x01 0x00
 
         #set fanspeed
-        echo "Setting fans to $intSpeed % : hex: $hexSpeed"
+        echo "MaxCore:$maxCoreTemp,CurCore:$curCoreTemp,Speed:$intSpeed,Hex:0x$hexSpeed"
         sudo ipmitool raw 0x30 0x30 0x02 0xff $hexSpeed &>/dev/null 
         curFanSpeed=$intSpeed 
     fi
