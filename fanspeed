@@ -65,7 +65,7 @@ addChronJob()
 
 addSystemd()
 {
-    sudo cp /etc/systemd/system/fanspeed.service
+    sudo cp fanspeed.service /etc/systemd/system/fanspeed.service
     sudo systemctl start fanspeed.service 
     sudo systemctl enable fanspeed.service
 }
