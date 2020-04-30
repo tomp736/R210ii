@@ -1,5 +1,10 @@
 #!/bin/bash
 
+update()
+{
+    git pull
+}
+
 install()
 {
     cp fanspeed /usr/local/bin/fanspeed
@@ -43,4 +48,5 @@ addSystemd()
 
 # install systemd 32 60 5
 # instll cron 32 60 5
+update
 install $1 $2 $3 $4
